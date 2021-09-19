@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="50" />
+    <title>HOME</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+  .Img-Header{
+    border: 1px black;
+    border-radius: 50%;
+    width: 40px;
+    height: 35px;
+  }
+</style>
+<body>
+    <nav class="navbar navbar-light bg-dark">
+        <a class="navbar-brand text-light" href="/home">DevSocial</a>
+        <a href="/me" class="text-light">Profile</a>
+        <a href="/auth/signout" class="text-light">SignOut</a>
+        <form class="form-inline" action="/search" method="GET">
+          <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </nav>
+    <div class="container">
+       <form action="/postsave" enctype="multipart/form-data" method="POST" class="mb-3">
+            <div class="mt-4">
+                <input class="form-control" type="text" name="title" placeholder="Title">
+            </div>
+            <div class="mt-2">
+                <input type="file" name="img" class="form-control">
+            </div>
+            <div class="mt-2">                    
+                <textarea id="my-textarea" class="form-control" name="desc" rows="3"></textarea>
+            </div>
+            <button class="mt-2  mb-2 btn btn-primary " type="submit">Post add</button>    
+        </form>
+        <% result.forEach((result)=> { %>
+            <div class="card mt-3">
+                <div class="card-header"><img src="<%= result.PostedBy[0].image %>" alt="User Image" class="Img-Header"> <%= result.PostedBy[0].Username %></div>
+                  <img class="card-img-top" id="imgSelect" src="<%= result.img %>">
+                <div class="card-body">
+                  <h5 class="card-title"><%=result.title%></h5>
+                  <p class="card-text"><%=result.desc%><p>
+                </div>
+              </div>
+      <%  }); %>
+    </div>
+
+
+
+
+
+
+    
+</body>
+</html>
+
